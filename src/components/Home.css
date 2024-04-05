@@ -1,0 +1,6 @@
+.quote {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}

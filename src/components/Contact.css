@@ -1,0 +1,17 @@
+input {
+  width: 40rem;
+  height: 3rem;
+  border-radius: 5px;
+  border-width: 1px;
+}
+
+textarea {
+  width: 40rem;
+  height: 25vh;
+}
+label {
+  font-size: 15px;
+}
+.inputStyles {
+  margin-bottom: 20px;
+}
