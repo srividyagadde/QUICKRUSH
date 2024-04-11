@@ -1,47 +1,46 @@
-import React, { useState } from "react";
+import React from "react";
 import Nav from "react-bootstrap/Nav";
-import FindDoctor from "./FindADoctor";
-import Contact from "./Contact";
-import Services from "./Services";
 import Home from "./Home";
 import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import UserLogin from "./UserLogin";
+import AdminLogin from "./AdminLogin";
+import DoctorLogin from "./DoctorLogin";
+import UserRegister from "./UserRegister";
+
 const NavbarComponent = () => {
   return (
     <div>
       <BrowserRouter>
         <div>
-          <Navbar className="navbar">
+          <Navbar className="navbar" expand="lg">
             <h4>QuickRush</h4>
-            <Container>
-              <Nav className="me-auto ">
-                <Nav.Link as={Link} to="/Home">
-                  Home
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="ms-auto">
+                <Nav.Link as={Link} to="/Admin">
+                  Admin
                 </Nav.Link>
 
-                <Nav.Link as={Link} to="/About">
-                  Find a doctor
+                <Nav.Link as={Link} to="/Doctor">
+                  Doctor
                 </Nav.Link>
 
-                <Nav.Link as={Link} to="/Gallery">
-                  Services
-                </Nav.Link>
-
-                <Nav.Link as={Link} to="/Contact">
-                  Contact
+                <Nav.Link as={Link} to="/User">
+                  User
                 </Nav.Link>
               </Nav>
-            </Container>
+            </Navbar.Collapse>
           </Navbar>
         </div>
         <Routes>
-          <Route path="/Home" element={<Home />}></Route>
-          <Route path="/About" element={<FindDoctor />}></Route>
-          <Route path="/Gallery" element={<Services />}></Route>
-          <Route path="/Contact" element={<Contact />}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/User" element={<UserLogin />}></Route>
+          <Route path="/Admin" element={<AdminLogin />}></Route>
+          <Route path="/Doctor" element={<DoctorLogin />}></Route>
+          <Route path="/UserRegister" element={<UserRegister />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
