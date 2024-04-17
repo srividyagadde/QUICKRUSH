@@ -1,12 +1,12 @@
+// AdminLogin.js
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./UserLogin.css";
 import TextField from "@mui/material/TextField";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function UserLogin() {
+function AdminLogin({ setRole }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,6 +28,7 @@ function UserLogin() {
         );
         if (user) {
           console.log(formData);
+          setRole("admin"); // Set the role to "admin" upon successful login
           toast.success("Login Successful");
         } else {
           toast.error("Invalid email or password!");
@@ -80,13 +81,10 @@ function UserLogin() {
         <button type="submit" className="btn btn-success">
           Login
         </button>
-        <Link to="/UserRegister" className="btn btn-link">
-          Register
-        </Link>
       </form>
       <ToastContainer />
     </div>
   );
 }
 
-export default UserLogin;
+export default AdminLogin;

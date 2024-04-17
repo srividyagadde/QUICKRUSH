@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function UserLogin() {
+function UserLogin({ setRole }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,6 +28,7 @@ function UserLogin() {
         );
         if (user) {
           console.log(formData);
+          setRole("patient");
           toast.success("Login Successful");
         } else {
           toast.error("Invalid email or password!");
