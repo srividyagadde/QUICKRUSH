@@ -7,13 +7,9 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.title {
-  margin-bottom: 50px;
+TextField {
+  height: "50px";
 }
-.input-field {
-  margin-bottom: 20px;
-}
-
 .toast-container {
   .Toastify__toast {
     font-family: Arial, sans-serif;

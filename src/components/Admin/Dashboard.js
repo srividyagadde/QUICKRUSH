@@ -49,38 +49,34 @@ const Dashboard = () => {
 
     fetchData();
   }, []);
-
   return (
-    <div>
-      <h2>Dashboard</h2>
-      <Row>
-        <Col md={4}>
-          <Card>
-            <Card.Body>
-              <Card.Title>Number of Doctors</Card.Title>
-              <Card.Text>{numDoctors}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card>
-            <Card.Body>
-              <Card.Title>Number of Checked Patients</Card.Title>
-              <Card.Text>{numCheckedPatients}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={4}>
-          <Card>
-            <Card.Body>
-              <Card.Title>Number of Today's Appointments</Card.Title>
-              <Card.Text>{numTodayAppointments}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+    <div className="container mx-auto py-8">
+      <h2 className="text-2xl font-bold mb-6">Dashboard</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-2">Number of Doctors</h3>
+            <p className="text-4xl font-bold">{numDoctors}</p>
+          </div>
+        </div>
+        <div>
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-2">
+              Number of Checked Patients
+            </h3>
+            <p className="text-4xl font-bold">{numCheckedPatients}</p>
+          </div>
+        </div>
+        <div>
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <h3 className="text-xl font-bold mb-2">
+              Number of Today's Appointments
+            </h3>
+            <p className="text-4xl font-bold">{numTodayAppointments}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
-
 export default Dashboard;

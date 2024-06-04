@@ -31,6 +31,10 @@ const EditDoctor = () => {
       console.error("Error:", error);
     }
   };
+  const handleCancel = () => {
+    alert("Are to want to cancel the updates");
+    navigate("/Admin/ViewDoctors");
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,92 +59,150 @@ const EditDoctor = () => {
       console.error("Error:", error);
     }
   };
-
   return (
-    <div>
-      <h2>Edit Doctor</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="fullname">
-          <Form.Label>Full Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="fullname"
-            value={doctor.fullname}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+    <div className="container mx-auto py-8">
+      <h2 className="text-2xl font-bold mb-6 m-0 ">Edit Doctor</h2>
+      <div className="max-w-md mx-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 shadow-lg"
+        >
+          <div className="mb-4">
+            <label
+              htmlFor="fullname"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Full Name
+            </label>
+            <input
+              type="text"
+              name="fullname"
+              value={doctor.fullname}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-        <Form.Group controlId="dateOfBirth">
-          <Form.Label>Date of Birth</Form.Label>
-          <Form.Control
-            type="date"
-            name="date_of_birth"
-            value={doctor.date_of_birth}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          <div className="mb-4">
+            <label
+              htmlFor="dateOfBirth"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Date of Birth
+            </label>
+            <input
+              type="date"
+              name="date_of_birth"
+              value={doctor.date_of_birth}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-        <Form.Group controlId="qualification">
-          <Form.Label>Qualification</Form.Label>
-          <Form.Control
-            type="text"
-            name="qualification"
-            value={doctor.qualification}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          <div className="mb-4">
+            <label
+              htmlFor="qualification"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Qualification
+            </label>
+            <input
+              type="text"
+              name="qualification"
+              value={doctor.qualification}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-        <Form.Group controlId="specialist">
-          <Form.Label>Specialist</Form.Label>
-          <Form.Control
-            type="text"
-            name="specialist"
-            value={doctor.specialist}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          <div className="mb-4">
+            <label
+              htmlFor="specialist"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Specialist
+            </label>
+            <input
+              type="text"
+              name="specialist"
+              value={doctor.specialist}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={doctor.email}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          <div className="mb-4">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={doctor.email}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-        <Form.Group controlId="phoneNumber">
-          <Form.Label>Phone Number</Form.Label>
-          <Form.Control
-            type="tel"
-            name="phone_number"
-            value={doctor.phone_number}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          <div className="mb-4">
+            <label
+              htmlFor="phoneNumber"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              name="phone_number"
+              value={doctor.phone_number}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            value={doctor.password}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+          <div className="mb-4">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-bold mb-2"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={doctor.password}
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
 
-        <Button variant="primary" type="submit">
-          Save Changes
-        </Button>
-      </Form>
+          <div className="flex items-center justify-between">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Update
+            </button>
+            <button
+              type="button"
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./AppointmentForm.css";
 
 const AppointmentForm = () => {
   const [patientname, setPatientname] = useState("");
@@ -111,11 +110,13 @@ const AppointmentForm = () => {
   }
 
   return (
-    <div className="register-container">
-      <h2 className="title">Book Appointment</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-row">
-          <div style={{ paddingBottom: "10px" }}>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
+        <h2 className="text-2xl font-bold mb-4 text-center">
+          Book Appointment
+        </h2>
+        <form onSubmit={handleSubmit}>
+          <div>
             <input
               type="text"
               id="patientname"
@@ -123,11 +124,9 @@ const AppointmentForm = () => {
               name="patientname"
               value={patientname}
               onChange={(e) => setPatientname(e.target.value)}
-              className="form-control input-field"
+              className="form-control input-field mb-4"
               required
             />
-          </div>
-          <div style={{ paddingBottom: "10px" }}>
             <input
               type="number"
               id="age"
@@ -135,17 +134,15 @@ const AppointmentForm = () => {
               name="age"
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              className="form-control input-field"
+              className="form-control input-field mb-4"
               required
             />
-          </div>
-          <div style={{ paddingBottom: "10px" }}>
             <select
               id="gender"
               name="gender"
               value={gender}
               onChange={(e) => setGender(e.target.value)}
-              className="form-control input-field"
+              className="form-control input-field mb-4"
               required
             >
               <option value="">Select Gender</option>
@@ -153,14 +150,12 @@ const AppointmentForm = () => {
               <option value="Female">Female</option>
               <option value="Other">Other</option>
             </select>
-          </div>
-          <div style={{ paddingBottom: "10px" }}>
             <select
               id="specialist"
               name="specialist"
               value={specialist}
               onChange={(e) => setSpecialist(e.target.value)}
-              className="form-control input-field"
+              className="form-control input-field mb-4"
               required
             >
               <option value="">Select Specialist</option>
@@ -176,14 +171,12 @@ const AppointmentForm = () => {
                 ))
               )}
             </select>
-          </div>
-          <div style={{ paddingBottom: "10px" }}>
             <select
               id="doctor"
               name="doctor"
               value={doctor}
               onChange={(e) => setDoctor(e.target.value)}
-              className="form-control input-field"
+              className="form-control input-field mb-4"
               required
             >
               <option value="">Select Doctor</option>
@@ -201,34 +194,33 @@ const AppointmentForm = () => {
                   ))
               )}
             </select>
-          </div>
-          <div style={{ paddingBottom: "10px" }}>
             <input
               type="date"
               id="appointment_date"
               name="appointment_date"
               value={appointment_date}
               onChange={(e) => setAppointment_date(e.target.value)}
-              className="form-control input-field"
+              className="form-control input-field mb-4"
               required
             />
-          </div>
-          <div style={{ paddingBottom: "10px" }}>
             <input
               type="time"
               id="appointment_time"
               name="appointment_time"
               value={appointment_time}
               onChange={(e) => setAppointment_time(e.target.value)}
-              className="form-control input-field"
+              className="form-control input-field mb-4"
               required
             />
+            <button
+              type="submit"
+              className="w-full bg-green-500 text-white p-2 rounded"
+            >
+              Book Appointment
+            </button>
           </div>
-          <button type="submit" className="btn btn-success">
-            Book Appointment
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
       <ToastContainer />
     </div>
   );

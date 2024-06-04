@@ -3,12 +3,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-const PORT = 3168;
-
-// Database connection
-const URI =
-  "mongodb+srv://srividyagadde:srividya@cluster0.sptv6u9.mongodb.net/quickrush";
-// const URI = "mongodb://localhost:27017/quickrush";
+require("dotenv").config();
+const URI = process.env.MONGO_URL;
+const PORT = process.env.PORT || 3168;
 mongoose
   .connect(URI)
   .then(() => {
@@ -17,8 +14,6 @@ mongoose
   .catch((error) => {
     console.log("Failed to connect to MongoDB", error);
   });
-
-// Schemas
 
 const userSchema = require("./model/userModel");
 const doctorSchema = require("./model/doctorModel");
@@ -30,19 +25,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "*",
   })
 );
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
 // User Login
 app.post("/getUser", async (req, res) => {
   const { email, password } = req.body;
@@ -151,7 +137,7 @@ app.post("/getDoctor", async (req, res) => {
       return res.status(404).json({ error: "Doctor not found" });
     }
     if (doctor.password === password) {
-      res.status(200).json({ username: doctor.fullname });
+      res.status(200).json({ username: doctor.doctor });
     } else {
       res.status(401).json({ error: "Invalid credentials" });
     }

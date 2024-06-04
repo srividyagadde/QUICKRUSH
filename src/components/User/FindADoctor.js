@@ -1,61 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FindADoctor.css";
-import { Card } from "react-bootstrap";
-import TextField from "@mui/material/TextField";
-import doctor1 from "./images/dummy.webp";
-import doctor2 from "./images/dummy.webp";
-import doctor3 from "./images/dummy.webp";
-import doctor5 from "./images/dummy.webp";
-import doctor4 from "./images/dummy.webp";
 
 function FindDoctor() {
-  const itemList = [
-    { name: "Laxman Reddy", specialist: "Psychology", photo: doctor1 },
-    { name: "Sri Vidya", specialist: "Cardiology", photo: doctor2 },
-    { name: "Sowjanya", specialist: "Dermatology", photo: doctor3 },
-    { name: "Vamshi Reddy", specialist: "ENT", photo: doctor4 },
-    { name: "Nanditha Reddy", specialist: "Gynaecology", photo: doctor5 },
-  ];
+  const [doctorList, setDoctorList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
 
-  const [filteredList, setFilteredList] = useState(itemList);
+  useEffect(() => {
+    fetch("http://localhost:3168/doctors")
+      .then((response) => response.json())
+      .then((data) => {
+        setDoctorList(data);
+        setFilteredList(data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the doctor data!", error);
+      });
+  }, []);
 
   const filterBySearch = (e) => {
     const query = e.target.value;
-    var updatedList = [...itemList];
-    updatedList = updatedList.filter((item) => {
+    const updatedList = doctorList.filter((item) => {
       return (
-        item.name.toLowerCase().indexOf(query.toLowerCase()) !== -1 ||
-        item.specialist.toLowerCase().indexOf(query.toLowerCase()) !== -1
+        item.fullname.toLowerCase().includes(query.toLowerCase()) ||
+        item.specialist.toLowerCase().includes(query.toLowerCase())
       );
     });
     setFilteredList(updatedList);
   };
 
   return (
-    <div className="center">
+    <div
+      className="center"
+      style={{
+        marginTop: "60px",
+        width: "80%",
+        marginLeft: "auto",
+        marginRight: "auto",
+      }}
+    >
       <h1>Find a Doctor</h1>
-      <TextField
-        id="outlined-basic"
-        label="Search for doctor"
-        variant="outlined"
-        style={{ width: "20rem", marginBottom: "10px" }}
+      <input
+        type="text"
+        placeholder="Search for doctor"
+        className="mb-4 p-2 border border-gray-300 rounded"
+        style={{ width: "20rem" }}
         onChange={filterBySearch}
       />
 
-      <div className="row col-sm-12">
-        {filteredList.map((item, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {filteredList.map((doctor, index) => (
           <div key={index} className="col">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src={item.photo}
-                className="doctor-image"
+            <div className="max-w-sm rounded overflow-hidden shadow-lg">
+              <img
+                className="w-full"
+                src={doctor.photo || "default_photo_url_here"}
+                alt="Doctor"
               />
-              <Card.Body>
-                <Card.Title>{item.name}</Card.Title>
-                <Card.Text>{item.specialist}</Card.Text>
-              </Card.Body>
-            </Card>
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">{doctor.fullname}</div>
+                <p className="text-gray-700 text-base">{doctor.specialist}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>

@@ -11,14 +11,11 @@ const DefaultNavbar = () => (
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ms-auto">
-        <Nav.Link as={Link} to="/Admin">
-          Admin
+        <Nav.Link as={Link} to="/Login">
+          Login
         </Nav.Link>
-        <Nav.Link as={Link} to="/Doctor">
-          Doctor
-        </Nav.Link>
-        <Nav.Link as={Link} to="/User">
-          User
+        <Nav.Link as={Link} to="/Register">
+          Register
         </Nav.Link>
       </Nav>
     </Navbar.Collapse>

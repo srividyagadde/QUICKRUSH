@@ -34,7 +34,12 @@ function Services() {
   return (
     <div
       className="searchbar"
-      style={{ marginTop: "10px", width: "80%", margin: "auto" }}
+      style={{
+        marginTop: "60px",
+        width: "80%",
+        marginLeft: "auto",
+        marginRight: "auto",
+      }}
     >
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
         {itemList.map((item, index) => (

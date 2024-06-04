@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
 
 function DoctorDashboard() {
   const [patientsCount, setPatientsCount] = useState(0);
@@ -16,7 +15,7 @@ function DoctorDashboard() {
       })
       .then((data) => {
         // Get doctor's name from session storage
-        const storedDoctorName = localStorage.getItem("doctorName");
+        const storedDoctorName = localStorage.getItem("username");
         if (!storedDoctorName) {
           throw new Error("Doctor name not found in Local storage");
         }
@@ -42,19 +41,17 @@ function DoctorDashboard() {
   }, []);
 
   return (
-    <div>
-      <Card style={{ width: "18rem", marginBottom: "20px" }}>
-        <Card.Body>
-          <Card.Title>Total Patients</Card.Title>
-          <Card.Text>{patientsCount}</Card.Text>
-        </Card.Body>
-      </Card>
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>Checked Patients</Card.Title>
-          <Card.Text>{checkedPatientsCount}</Card.Text>
-        </Card.Body>
-      </Card>
+    <div className="flex justify-center items-center h-screen">
+      <div className="grid grid-cols-2 gap-4">
+        <div className="bg-white shadow-lg rounded-lg p-6">
+          <h3 className="text-lg font-bold mb-2">Total Patients</h3>
+          <p className="text-4xl font-bold">{patientsCount}</p>
+        </div>
+        <div className="bg-white shadow-lg rounded-lg p-6">
+          <h3 className="text-lg font-bold mb-2">Checked Patients</h3>
+          <p className="text-4xl font-bold">{checkedPatientsCount}</p>
+        </div>
+      </div>
     </div>
   );
 }

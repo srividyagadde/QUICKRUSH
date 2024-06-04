@@ -4,11 +4,8 @@ import AdminNavbar from "./components/Layouts/AdminNavbar";
 import PatientNavbar from "./components/Layouts/UserNavbar";
 import DoctorNavbar from "./components/Layouts/DoctorNavbar";
 import Home from "./components/Layouts/Home";
-import AdminLogin from "./components/Pages/AdminLogin";
 import DefaultNavbar from "./components/Layouts/MyNavbar";
-import DoctorLogin from "./components/Pages/DoctorLogin";
-import UserLogin from "./components/Pages/UserLogin";
-import UserRegister from "./components/Pages/UserRegister";
+import Register from "./components/Pages/RegisterationPage";
 import AppointmentForm from "./components/User/AppointmentForm";
 import FindDoctor from "./components/User/FindADoctor";
 import Services from "./components/User/Services";
@@ -19,30 +16,22 @@ import AdminViewDoctors from "./components/Admin/ViewDoctors";
 import EditDoctor from "./components/Admin/EditDoctorDetails";
 import ViewPatientList from "./components/Admin/ViewPatient";
 import Dashboard from "./components/Admin/Dashboard";
+import Login from "./components/Pages/LoginPage"; // Import CombinedLogin component
 
 const App = () => {
-  const [role, setRole] = useState(() => localStorage.getItem("role"));
+  const [role, setRole] = useState(
+    () => localStorage.getItem("role") || "null"
+  );
 
   useEffect(() => {
     localStorage.setItem("role", role);
   }, [role]);
 
   const handleLogout = () => {
-    window.location.reload(true);
     setRole("null");
     localStorage.removeItem("role");
-  };
-
-  const handleAdminLogin = () => {
-    setRole("admin");
-  };
-
-  const handleDoctorLogin = () => {
-    setRole("doctor");
-  };
-
-  const handleUserLogin = () => {
-    setRole("patient");
+    localStorage.removeItem("username");
+    window.location.reload(true);
   };
 
   return (
@@ -62,22 +51,8 @@ const App = () => {
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/Admin"
-            element={<AdminLogin setRole={handleAdminLogin} />}
-          />
-          <Route
-            path="/Doctor"
-            element={<DoctorLogin setRole={handleDoctorLogin} />}
-          />
-          <Route
-            path="/User"
-            element={<UserLogin setRole={handleUserLogin} />}
-          />
-          <Route
-            path="/UserRegister"
-            element={<UserRegister setRole={handleUserLogin} />}
-          />
+          <Route path="/Login" element={<Login setRole={setRole} />} />
+          <Route path="/Register" element={<Register />} />
           <Route path="/User/FindDoctor" element={<FindDoctor />} />
           <Route path="/User/Services" element={<Services />} />
           <Route path="/User/AppointmentForm" element={<AppointmentForm />} />

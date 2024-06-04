@@ -55,59 +55,74 @@ const ViewPatientList = () => {
   } else {
     message = details.length === 0 ? "No appointments for selected date" : "";
   }
-
   return (
-    <div style={{ width: "60%", textAlign: "center", margin: "auto" }}>
-      <div className="row justify-content-end ms-6 ">
-        <div className="col-md-4">
-          <Form controlId="datePicker">
-            <Form.Group>
-              <Form.Label>
-                Select Date:
+    <div className="w-3/5 mx-auto">
+      <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="flex justify-end mb-4">
+          <div className="w-full md:w-auto">
+            <Form controlId="datePicker">
+              <Form.Group>
+                <Form.Label className="text-gray-700 font-medium">
+                  Select Date:
+                </Form.Label>
                 <Form.Control
                   type="date"
                   value={selectedDate}
                   onChange={handleDateChange}
-                  className="form-control"
+                  className="form-control bg-gray-100 border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
-              </Form.Label>
-            </Form.Group>
-          </Form>
+              </Form.Group>
+            </Form>
+          </div>
         </div>
-      </div>
-      <div className="row mt-3 table-container">
-        <div className="col">
-          {loading ? (
-            <p className="text-center">Loading...</p>
-          ) : details.length === 0 ? (
-            <p className="text-center">{message}</p>
-          ) : (
-            <Table striped bordered hover variant="dark" className="table">
-              <thead>
-                <tr>
-                  {headings.map((h) => (
-                    <th key={h}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {details.map((patient, index) => (
-                  <tr key={index}>
-                    <td>{patient.patientname}</td>
-                    <td>{patient.age}</td>
-                    <td>{patient.gender}</td>
-                    <td>{patient.appointment_date}</td>
-                    <td>{patient.appointment_time}</td>
-                    <td>{patient.checked ? "Checked" : "Unchecked"}</td>
+        <div className="row mt-3 table-container">
+          <div className="col">
+            {loading ? (
+              <p className="text-center text-gray-700 font-medium">
+                Loading...
+              </p>
+            ) : details.length === 0 ? (
+              <p className="text-center text-gray-700 font-medium">{message}</p>
+            ) : (
+              <table className="table-auto w-full border-collapse border border-gray-400">
+                <thead>
+                  <tr className="bg-gray-200 text-gray-700 font-medium">
+                    {headings.map((h) => (
+                      <th key={h} className="px-4 py-2">
+                        {h}
+                      </th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          )}
+                </thead>
+                <tbody>
+                  {details.map((patient, index) => (
+                    <tr
+                      key={index}
+                      className={`${
+                        index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                      } hover:bg-gray-200 text-gray-700`}
+                    >
+                      <td className="px-4 py-2">{patient.patientname}</td>
+                      <td className="px-4 py-2">{patient.age}</td>
+                      <td className="px-4 py-2">{patient.gender}</td>
+                      <td className="px-4 py-2">{patient.appointment_date}</td>
+                      <td className="px-4 py-2">{patient.appointment_time}</td>
+                      <td className="px-4 py-2">
+                        <input
+                          type="checkbox"
+                          checked={patient.checked}
+                          className="form-checkbox h-4 w-4 text-blue-600 border-gray-300 rounded"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default ViewPatientList;

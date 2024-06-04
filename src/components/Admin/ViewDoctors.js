@@ -55,48 +55,55 @@ const AdminViewDoctors = () => {
     setSelectedDoctor(doctor);
     setShowDetailsModal(true);
   };
-
   return (
-    <div style={{ width: "80%", textAlign: "center", margin: "auto" }}>
-      <h2>View Doctors</h2>
-      <Table bordered hover variant="success">
+    <div className="w-4/5 mx-auto">
+      <h2 className="text-2xl font-bold mb-4">View Doctors</h2>
+      <table className="w-full table-auto border-collapse">
         <thead>
-          <tr>
-            <th>Name</th>
-            <th>Specialist</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Actions</th>
+          <tr className="bg-gray-200 text-gray-700">
+            <th className="px-4 py-2">Name</th>
+            <th className="px-4 py-2">Specialist</th>
+            <th className="px-4 py-2">Email</th>
+            <th className="px-4 py-2">Phone Number</th>
+            <th className="px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
           {doctors.map((doctor) => (
-            <tr key={doctor._id}>
-              <td>{doctor.fullname}</td>
-              <td>{doctor.specialist}</td>
-              <td>{doctor.email}</td>
-              <td>{doctor.phone_number}</td>
-              <td>
-                <Button variant="info" onClick={() => handleEdit(doctor._id)}>
-                  Edit
-                </Button>
-                <Button
-                  variant="primary"
-                  onClick={() => handleDisplayDetails(doctor)} // Pass the selected doctor to the function
-                >
-                  Display
-                </Button>
-                <Button
-                  variant="danger"
-                  onClick={() => handleDelete(doctor._id)}
-                >
-                  Delete
-                </Button>
+            <tr
+              key={doctor._id}
+              className="border-b border-gray-300 hover:bg-gray-100"
+            >
+              <td className="px-4 py-2">{doctor.fullname}</td>
+              <td className="px-4 py-2">{doctor.specialist}</td>
+              <td className="px-4 py-2">{doctor.email}</td>
+              <td className="px-4 py-2">{doctor.phone_number}</td>
+              <td className="px-4 py-2">
+                <div className="flex justify-center space-x-2">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleEdit(doctor._id)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleDisplayDetails(doctor)}
+                  >
+                    Display
+                  </button>
+                  <button
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleDelete(doctor._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
 
       {/* Modal to display doctor details */}
       <Modal show={showDetailsModal} onHide={() => setShowDetailsModal(false)}>
@@ -106,20 +113,31 @@ const AdminViewDoctors = () => {
         <Modal.Body>
           {selectedDoctor && (
             <div>
-              <p>Name: {selectedDoctor.fullname}</p>
-              <p>Specialist: {selectedDoctor.specialist}</p>
-              <p>Email: {selectedDoctor.email}</p>
-              <p>Phone Number: {selectedDoctor.phone_number}</p>
+              <p className="mb-2">
+                <span className="font-bold">Name:</span>{" "}
+                {selectedDoctor.fullname}
+              </p>
+              <p className="mb-2">
+                <span className="font-bold">Specialist:</span>{" "}
+                {selectedDoctor.specialist}
+              </p>
+              <p className="mb-2">
+                <span className="font-bold">Email:</span> {selectedDoctor.email}
+              </p>
+              <p className="mb-2">
+                <span className="font-bold">Phone Number:</span>{" "}
+                {selectedDoctor.phone_number}
+              </p>
             </div>
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="secondary"
+          <button
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
             onClick={() => setShowDetailsModal(false)}
           >
             Close
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </div>
