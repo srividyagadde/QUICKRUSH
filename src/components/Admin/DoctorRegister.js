@@ -19,6 +19,9 @@ const DoctorRegister = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const capitalizedSpecialist =
+      formData.specialist.charAt(0).toUpperCase() +
+      formData.specialist.slice(1);
 
     try {
       const response = await fetch("http://localhost:3168/addDoctor", {
@@ -26,7 +29,10 @@ const DoctorRegister = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          specialist: capitalizedSpecialist,
+        }),
       });
 
       if (!response.ok) {

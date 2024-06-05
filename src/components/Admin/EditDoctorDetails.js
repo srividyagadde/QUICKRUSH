@@ -26,7 +26,15 @@ const EditDoctor = () => {
         throw new Error("Failed to fetch doctor");
       }
       const data = await response.json();
-      setDoctor(data);
+      const dateOfBirth = new Date(data.date_of_birth)
+        .toISOString()
+        .split("T")[0];
+
+      // Update the doctor object with the parsed date
+      setDoctor({
+        ...data,
+        date_of_birth: dateOfBirth,
+      });
     } catch (error) {
       console.error("Error:", error);
     }
@@ -54,6 +62,7 @@ const EditDoctor = () => {
       if (!response.ok) {
         throw new Error("Failed to update doctor");
       }
+      alert("Details updated successfully");
       navigate("/Admin/ViewDoctors");
     } catch (error) {
       console.error("Error:", error);

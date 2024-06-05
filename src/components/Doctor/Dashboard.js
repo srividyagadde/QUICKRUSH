@@ -42,7 +42,7 @@ function DoctorDashboard() {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4" style={{ marginTop: "-25rem" }}>
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h3 className="text-lg font-bold mb-2">Total Patients</h3>
           <p className="text-4xl font-bold">{patientsCount}</p>

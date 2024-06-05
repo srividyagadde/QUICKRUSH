@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,7 +17,15 @@ const AppointmentForm = () => {
   const [loadingDoctors, setLoadingDoctors] = useState(true);
   const [loadingSpecialists, setLoadingSpecialists] = useState(true);
 
+  const location = useLocation();
+
   useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const doctorParam = params.get('doctor');
+    const specialistParam = params.get('specialist');
+    if (doctorParam) setDoctor(doctorParam);
+    if (specialistParam) setSpecialist(specialistParam);
+
     // Fetch list of doctors
     fetch("http://localhost:3168/doctors")
       .then((res) => {
@@ -52,7 +61,7 @@ const AppointmentForm = () => {
         toast.error("Failed to fetch specialists. Please try again.");
         setLoadingSpecialists(false);
       });
-  }, []);
+  }, [location]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -212,13 +221,13 @@ const AppointmentForm = () => {
               className="form-control input-field mb-4"
               required
             />
-            <button
-              type="submit"
-              className="w-full bg-green-500 text-white p-2 rounded"
-            >
-              Book Appointment
-            </button>
           </div>
+          <button
+            type="submit"
+            className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600"
+          >
+            Book Appointment
+          </button>
         </form>
       </div>
       <ToastContainer />

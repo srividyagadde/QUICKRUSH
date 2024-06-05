@@ -17,7 +17,7 @@ import EditDoctor from "./components/Admin/EditDoctorDetails";
 import ViewPatientList from "./components/Admin/ViewPatient";
 import Dashboard from "./components/Admin/Dashboard";
 import Login from "./components/Pages/LoginPage"; // Import CombinedLogin component
-
+import "./App.css";
 const App = () => {
   const [role, setRole] = useState(
     () => localStorage.getItem("role") || "null"

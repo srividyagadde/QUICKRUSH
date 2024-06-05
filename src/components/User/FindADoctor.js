@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./FindADoctor.css";
 
 function FindDoctor() {
   const [doctorList, setDoctorList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:3168/doctors")
@@ -26,6 +28,12 @@ function FindDoctor() {
       );
     });
     setFilteredList(updatedList);
+  };
+
+  const handleBookAppointment = (doctor) => {
+    navigate(
+      `/User/AppointmentForm?doctor=${doctor.fullname}&specialist=${doctor.specialist}`
+    );
   };
 
   return (
@@ -59,6 +67,12 @@ function FindDoctor() {
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{doctor.fullname}</div>
                 <p className="text-gray-700 text-base">{doctor.specialist}</p>
+                <button
+                  onClick={() => handleBookAppointment(doctor)}
+                  className="mt-2 bg-blue-500 text-white p-2 rounded"
+                >
+                  Book Appointment
+                </button>
               </div>
             </div>
           </div>

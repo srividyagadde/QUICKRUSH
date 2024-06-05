@@ -137,7 +137,7 @@ app.post("/getDoctor", async (req, res) => {
       return res.status(404).json({ error: "Doctor not found" });
     }
     if (doctor.password === password) {
-      res.status(200).json({ username: doctor.doctor });
+      res.status(200).json({ username: doctor.fullname });
     } else {
       res.status(401).json({ error: "Invalid credentials" });
     }

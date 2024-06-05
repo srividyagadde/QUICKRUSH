@@ -1,5 +1,4 @@
 import React from "react";
-import "./Service.css";
 import Card from "react-bootstrap/Card";
 
 function Services() {
@@ -41,13 +40,13 @@ function Services() {
         marginRight: "auto",
       }}
     >
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center">
         {itemList.map((item, index) => (
           <div key={index} className="col">
-            <Card className="h-100">
+            <Card className="h-full rounded-lg shadow-md">
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
-                <Card.Text style={{ fontSize: "15px" }}>{item.intro}</Card.Text>
+                <Card.Text className="text-sm">{item.intro}</Card.Text>
               </Card.Body>
             </Card>
           </div>
